@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: tis-paper-repository
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: UPLOADS_DIR
+        value: /var/data/uploads
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_NAME
+        value: Administrator
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: tis-storage
+      mountPath: /var/data
+      sizeGB: 1

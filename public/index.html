@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paper Repository</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            school: {
+              50: '#f4f9f0',
+              100: '#e6f2dc',
+              200: '#cde5b9',
+              300: '#aed88f',
+              400: '#8fc66a',
+              500: '#73B34B',
+              600: '#5DA440',
+              700: '#4a8833',
+              800: '#3a6b28',
+              900: '#2a4e1d',
+              950: '#1a3112',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    // Apply saved appearance before first paint
+    try {
+      if (localStorage.getItem('tis_theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+
+  <!-- ==================== LOGIN VIEW ==================== -->
+  <div id="loginSection" class="min-h-screen bg-slate-100">
+    <div class="lg:grid lg:grid-cols-[1.05fr_1fr]">
+
+    <!-- Brand panel -->
+    <aside class="relative hidden overflow-hidden bg-school-950 p-10 text-white lg:flex lg:flex-col xl:p-14">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-school-700/30 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-school-600/20 blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative z-10 flex flex-1 flex-col">
+        <img
+          src="/images/cambridge-logo-light.svg"
+          alt="Cambridge Assessment International Education"
+          class="h-10 w-auto self-start xl:h-11"
+        />
+
+        <div class="mt-10 xl:mt-14">
+          <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-school-400">Internal Staff Platform</p>
+          <p class="mt-4 max-w-md text-sm leading-relaxed text-school-100/80">
+            Securely manage Cambridge Biology &amp; Chemistry exam papers, faculty access, and teaching resources from one platform.
+          </p>
+        </div>
+
+        <div class="mt-8 grid max-w-xl grid-cols-2 gap-3">
+          <div class="flex items-start gap-2.5 rounded-lg border border-school-800/80 bg-white/[0.04] px-3 py-2.5">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-school-800/80 text-school-300">
+              <i data-lucide="file-text" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold text-white">Paper Repository</p>
+              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Browse exams by class, subject and term</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 rounded-lg border border-school-800/80 bg-white/[0.04] px-3 py-2.5">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-school-800/80 text-school-300">
+              <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold text-white">Role-Based Access</p>
+              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Teachers see only their own subject</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 rounded-lg border border-school-800/80 bg-white/[0.04] px-3 py-2.5">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-school-800/80 text-school-300">
+              <i data-lucide="upload-cloud" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold text-white">Quick Uploads</p>
+              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Add papers with full exam metadata</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 rounded-lg border border-school-800/80 bg-white/[0.04] px-3 py-2.5">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-school-800/80 text-school-300">
+              <i data-lucide="users" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold text-white">Faculty Management</p>
+              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Admins control accounts and permissions</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 rounded-lg border border-school-800/80 bg-white/[0.04] px-3 py-2.5">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-school-800/80 text-school-300">
+              <i data-lucide="search" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold text-white">Instant Search</p>
+              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Find any paper in seconds</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 rounded-lg border border-school-800/80 bg-white/[0.04] px-3 py-2.5">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-school-800/80 text-school-300">
+              <i data-lucide="trending-up" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] font-semibold text-white">Live Statistics</p>
+              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Track paper counts and downloads</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-auto pt-8">
+          <div class="rounded-xl border border-school-700/60 bg-school-900/60 p-4">
+            <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white">
+              <i data-lucide="headphones" class="h-4 w-4 text-school-400"></i>
+              Need Help?
+            </p>
+            <p class="mt-2 text-xs leading-relaxed text-school-100/75">
+              Contact the school administrator for account access or password resets.
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Sign-in panel -->
+    <div class="flex min-h-screen justify-center px-4 py-6 sm:px-8">
+      <div class="m-auto w-full max-w-md">
+        <div class="mb-6 flex justify-center lg:hidden">
+          <img
+            id="loginLogo"
+            src="/images/cambridge-logo.svg"
+            alt="Cambridge Assessment International Education"
+            class="h-10 w-auto"
+          />
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl animate-fade-in sm:p-8">
+          <div class="text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-school-100 bg-school-50">
+              <i data-lucide="lock" class="h-5 w-5 text-school-700"></i>
+            </div>
+            <h2 class="mt-4 flex items-center justify-center gap-2 text-2xl font-bold text-slate-900">
+              <span>Welcome to</span>
+              <img src="/images/cambridge-crest.svg" alt="TIS" class="h-7 w-auto" />
+            </h2>
+            <p class="mt-1.5 text-sm text-slate-500">Sign in to access the paper archive</p>
+          </div>
+
+      <form id="loginForm" class="mt-7 space-y-4">
+        <div>
+          <label class="mb-1.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500" for="loginUsername">
+            Username
+          </label>
+          <div class="relative">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+              <i data-lucide="user" class="h-4 w-4"></i>
+            </span>
+            <input 
+              id="loginUsername" 
+              type="text" 
+              required 
+              autocomplete="username"
+              placeholder="Enter your username"
+              class="w-full rounded-lg border border-slate-300 py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-school-600 focus:ring-2 focus:ring-school-200"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="mb-1.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500" for="loginPassword">
+            Password
+          </label>
+          <div class="relative">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+              <i data-lucide="lock" class="h-4 w-4"></i>
+            </span>
+            <input 
+              id="loginPassword" 
+              type="password" 
+              required 
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              class="w-full rounded-lg border border-slate-300 py-2.5 pl-10 pr-11 text-sm outline-none transition focus:border-school-600 focus:ring-2 focus:ring-school-200"
+            />
+            <button 
+              type="button" 
+              id="loginPasswordToggle"
+              onclick="toggleLoginPasswordVisibility()"
+              class="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-slate-400 hover:text-school-700"
+              title="Show password"
+              aria-label="Show password"
+            >
+              <i data-lucide="eye" id="loginPasswordEye" class="h-4 w-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs">
+          <label class="inline-flex cursor-pointer items-center gap-2 text-slate-600" for="loginRemember">
+            <input 
+              id="loginRemember" 
+              type="checkbox" 
+              class="h-3.5 w-3.5 rounded border-slate-300 accent-school-700" 
+            />
+            Remember me
+          </label>
+          <button 
+            type="button" 
+            onclick="showLoginPasswordHelp()" 
+            class="font-semibold text-school-700 transition hover:text-school-900 hover:underline"
+          >
+            Forgot Password?
+          </button>
+        </div>
+
+        <div id="loginError" class="hidden p-3 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200 flex items-center space-x-2">
+          <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+          <span id="loginErrorMessage">Invalid credentials</span>
+        </div>
+
+        <button 
+          type="submit" 
+          id="loginSubmitBtn"
+          class="flex w-full items-center justify-center rounded-lg bg-school-800 py-3 px-4 text-sm font-bold uppercase tracking-wider text-white shadow-md transition hover:bg-school-900 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          <span>Sign In</span>
+        </button>
+      </form>
+    </div>
+
+        <p class="mt-5 text-center text-[11px] text-slate-400">© 2026 Cambridge Assessment International Education</p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ==================== APP MAIN VIEW ==================== -->
+  <div id="appSection" class="hidden min-h-screen flex flex-row">
+    
+    <!-- Mobile Sidebar Backdrop -->
+    <div id="sidebarBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden md:hidden"></div>
+
+    <!-- SIDEBAR (NON-SCROLLABLE CONTAINER, VERY LIGHT GREEN, INNER CONTENT SCROLLS) -->
+    <aside 
+      id="mainSidebar" 
+      class="fixed md:sticky top-0 z-50 w-64 h-screen bg-school-50 text-slate-800 flex flex-col border-r border-school-200 shrink-0 overflow-hidden transition-transform duration-300 -translate-x-full md:translate-x-0"
+    >
+      <!-- FIXED TOP HEADER: School Logo, User Identity & Title (Non-Scrollable) -->
+      <div class="p-3 border-b border-school-200 shrink-0 bg-school-100/60">
+        <div class="flex items-center justify-between gap-2">
+          <div class="min-w-0 cursor-pointer" onclick="showDashboardTab('papers')">
+            <img
+              id="sidebarLogo"
+              src="/images/cambridge-logo.svg"
+              alt="Cambridge Assessment International Education"
+              class="h-7 sm:h-8 w-auto max-w-[200px] object-left object-contain"
+            />
+          </div>
+          <button onclick="toggleMobileSidebar()" class="md:hidden text-slate-400 hover:text-slate-700 p-1 shrink-0">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="mt-2.5 flex items-center gap-2 rounded-lg bg-white/75 border border-school-200 px-2 py-1.5">
+          <div class="w-7 h-7 rounded-full bg-school-700 text-white flex items-center justify-center font-bold text-[11px] shrink-0 shadow">
+            <span id="userAvatarLetter">U</span>
+          </div>
+          <div class="min-w-0 text-left">
+            <div id="navUserName" class="font-semibold text-[11px] text-school-950 truncate">User</div>
+            <div id="navUserScope" class="text-[9px] text-school-700 font-medium truncate">Role</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIDDLE CONTENT AREA: ONLY THIS PART SCROLLS -->
+      <div class="flex-1 min-h-0 overflow-y-auto px-3 py-4 space-y-5 sidebar-scroll">
+        
+        <!-- SECTION 1: DASHBOARD & ADMINISTRATION (Top of menu, Light Green Styled) -->
+        <div id="sideAdminSection" class="hidden space-y-1">
+          <button 
+            onclick="showDashboardTab('dashboard')"
+            class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left font-semibold text-school-950 bg-white hover:bg-school-100 border border-school-200 transition group cursor-pointer shadow-xs"
+            id="navDashboardTab"
+          >
+            <div class="flex items-center space-x-2.5">
+              <i data-lucide="bar-chart-3" class="w-4 h-4 text-school-700 group-hover:scale-110 transition"></i>
+              <span>Dashboard</span>
+            </div>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-school-400"></i>
+          </button>
+
+          <button 
+            onclick="showDashboardTab('admin')"
+            class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left font-semibold text-school-900 bg-school-100 hover:bg-school-200/80 border border-school-300 transition group cursor-pointer shadow-xs"
+            id="navAdminTab"
+          >
+            <div class="flex items-center space-x-2.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-school-700 group-hover:scale-110 transition"></i>
+              <span>Administration</span>
+            </div>
+            <span id="sideBadgeTeachersCount" class="text-xs bg-school-200 text-school-900 border border-school-300 px-2 py-0.5 rounded-full font-mono font-bold">0</span>
+          </button>
+        </div>
+
+        <!-- SECTION 2: SUBJECTS (Clickable Header & Filter Links) -->
+        <div>
+          <button 
+            onclick="toggleSidebarSection('sideSubjectNav')"
+            class="w-full flex items-center justify-between px-3 mb-1.5 text-[10px] font-bold uppercase tracking-wider text-school-800 hover:text-school-950 transition cursor-pointer"
+            title="Click to toggle Subjects"
+          >
+            <span>Subjects</span>
+            <i data-lucide="chevron-down" id="arrow_sideSubjectNav" class="w-3.5 h-3.5 transition-transform duration-200 text-school-700"></i>
+          </button>
+          <nav class="space-y-1" id="sideSubjectNav">
+            <!-- Biology -->
+            <button 
+              id="navBio" 
+              onclick="showDashboardTab('papers'); selectFilterFromSidebar('subject', 'Biology')"
+              class="sidebar-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left font-medium"
+            >
+              <div class="flex items-center space-x-2.5">
+                <i data-lucide="dna" class="w-4 h-4 text-emerald-600"></i>
+                <span>Biology</span>
+              </div>
+              <span id="sideBadgeBio" class="badge text-xs bg-white text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full font-mono">0</span>
+            </button>
+
+            <!-- Chemistry -->
+            <button 
+              id="navChem" 
+              onclick="showDashboardTab('papers'); selectFilterFromSidebar('subject', 'Chemistry')"
+              class="sidebar-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left font-medium"
+            >
+              <div class="flex items-center space-x-2.5">
+                <i data-lucide="flask-conical" class="w-4 h-4 text-teal-600"></i>
+                <span>Chemistry</span>
+              </div>
+              <span id="sideBadgeChem" class="badge text-xs bg-white text-teal-800 border border-teal-200 px-2 py-0.5 rounded-full font-mono">0</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- SECTION 3: YEARS (CLASSES Year 7 - 13) (Clickable Header) -->
+        <div>
+          <button 
+            onclick="toggleSidebarSection('sideYearsNav')"
+            class="w-full flex items-center justify-between px-3 mb-1.5 text-[10px] font-bold uppercase tracking-wider text-school-800 hover:text-school-950 transition cursor-pointer"
+            title="Click to toggle Classes"
+          >
+            <span>Years (Classes)</span>
+            <i data-lucide="chevron-down" id="arrow_sideYearsNav" class="w-3.5 h-3.5 transition-transform duration-200 text-school-700 -rotate-90"></i>
+          </button>
+          <nav class="hidden space-y-1" id="sideYearsNav">
+            <!-- Populated dynamically with Year 7 to Year 13 -->
+          </nav>
+        </div>
+
+        <!-- SECTION 4: ACADEMIC YEARS (2026, 2025, 2024...) (Clickable Header) -->
+        <div>
+          <button 
+            onclick="toggleSidebarSection('sideAcademicYearsNav')"
+            class="w-full flex items-center justify-between px-3 mb-1.5 text-[10px] font-bold uppercase tracking-wider text-school-800 hover:text-school-950 transition cursor-pointer"
+            title="Click to toggle Academic Years"
+          >
+            <span>Academic Years</span>
+            <i data-lucide="chevron-down" id="arrow_sideAcademicYearsNav" class="w-3.5 h-3.5 transition-transform duration-200 text-school-700 -rotate-90"></i>
+          </button>
+          <nav class="hidden space-y-1" id="sideAcademicYearsNav">
+            <!-- Populated dynamically with academic years -->
+          </nav>
+        </div>
+
+        <!-- SECTION 5: ALL PAPERS (Bottom of menu) -->
+        <div>
+          <nav class="space-y-1">
+            <button 
+              id="navAllPapers" 
+              onclick="showDashboardTab('papers'); selectFilterFromSidebar('all', 'all')"
+              class="sidebar-item active w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left font-medium"
+            >
+              <div class="flex items-center space-x-2.5">
+                <i data-lucide="library" class="w-4 h-4"></i>
+                <span>All Papers</span>
+              </div>
+              <span id="sideBadgeTotal" class="badge text-xs bg-white text-school-800 border border-school-200 px-2 py-0.5 rounded-full font-mono">0</span>
+            </button>
+          </nav>
+        </div>
+
+      </div>
+
+      <!-- FIXED BOTTOM FOOTER: Logout (Non-Scrollable) -->
+      <div class="p-3 bg-school-100/70 border-t border-school-200 shrink-0">
+        <button 
+          onclick="logout()" 
+          title="Log Out"
+          class="w-full inline-flex items-center justify-center space-x-2 px-3 py-2 text-xs font-semibold text-school-800 hover:text-red-600 hover:bg-school-200 border border-school-300 rounded-lg transition"
+        >
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+          <span>Log Out</span>
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0 bg-slate-50 min-h-screen">
+      
+      <!-- Top Bar -->
+      <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+        <div class="px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+          
+          <!-- Mobile Menu Hamburger -->
+          <div class="flex items-center space-x-3">
+            <button 
+              onclick="toggleMobileSidebar()" 
+              class="md:hidden text-slate-600 hover:text-slate-900 p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100"
+            >
+              <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <!-- Quick Search & Actions in Header -->
+          <div class="flex items-center space-x-3 flex-1 max-w-lg justify-end">
+            <!-- Search Input -->
+            <div class="relative w-full max-w-xs">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 pointer-events-none">
+                <i data-lucide="search" class="w-4 h-4"></i>
+              </span>
+              <input 
+                id="searchInput" 
+                type="text" 
+                oninput="debounceSearch()"
+                placeholder="Search exams, tests..." 
+                class="w-full pl-9 pr-4 py-1.5 bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200 rounded-lg text-xs sm:text-sm text-slate-800 focus:ring-2 focus:ring-school-600 outline-none transition"
+              />
+            </div>
+
+            <!-- My Account / Profile Button in Header -->
+            <button 
+              id="headerProfileBtn"
+              onclick="openMyAccountModal()"
+              class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-school-50 hover:bg-school-100 border border-school-200 text-school-800 shadow-sm transition active:scale-95 shrink-0"
+              title="My Account"
+              aria-label="My Account"
+            >
+              <i data-lucide="circle-user" class="w-5 h-5"></i>
+            </button>
+
+            <!-- View Mode Switcher -->
+            <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 shrink-0">
+              <button 
+                id="viewGridBtn"
+                onclick="setViewMode('grid')" 
+                class="flex items-center gap-1 px-2 py-1.5 sm:px-2.5 rounded-md text-xs font-semibold text-slate-500 hover:text-slate-800 transition"
+                title="Grid View"
+                aria-pressed="false"
+              >
+                <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Grid</span>
+              </button>
+              <button 
+                id="viewListBtn"
+                onclick="setViewMode('list')" 
+                class="flex items-center gap-1 px-2 py-1.5 sm:px-2.5 rounded-md text-xs font-semibold bg-white text-school-800 shadow-sm transition"
+                title="Table View"
+                aria-pressed="true"
+              >
+                <i data-lucide="list" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Table</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <!-- Mobile Upload Bar -->
+      <div id="mainTabsBar" class="sm:hidden bg-white border-b border-slate-200 px-4 sm:px-6">
+        <div class="flex items-center justify-end py-2">
+          <!-- Mobile Upload Button -->
+          <button 
+            id="mobileUploadBtn"
+            onclick="openUploadModal()"
+            class="sm:hidden flex items-center space-x-1 px-3 py-1 bg-school-700 hover:bg-school-800 text-white rounded-lg text-xs font-semibold shadow-sm transition"
+          >
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+            <span>Upload</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT VIEW 1: PAPERS REPOSITORY -->
+      <main id="papersMainView" class="flex-1 p-3 sm:p-5 lg:p-6 max-w-7xl w-full mx-auto space-y-4">
+        
+        <!-- Role Notification Banner (when teacher is restricted to one subject) -->
+        <div id="subjectScopeBanner" class="hidden p-4 rounded-xl border flex items-center justify-between shadow-sm">
+          <div class="flex items-center space-x-3">
+            <div id="scopeBannerIcon" class="p-2 rounded-lg"></div>
+            <div>
+              <h4 id="scopeBannerTitle" class="font-bold text-xs">Subject access</h4>
+              <p id="scopeBannerText" class="text-[10px]">Restricted to your assigned subject.</p>
+            </div>
+          </div>
+          <span id="scopeBannerTag" class="text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"></span>
+        </div>
+
+        <!-- Quick Summary Stats Bar -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm flex items-center gap-2">
+            <div class="p-1.5 rounded-md bg-school-50 text-school-600 border border-school-100 shrink-0">
+              <i data-lucide="files" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="statTotalPapers" class="text-base font-bold text-slate-800 leading-none">0</div>
+              <div class="text-[9px] font-medium text-slate-500 truncate">Total</div>
+            </div>
+          </div>
+
+          <div id="statBioCard" class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm flex items-center gap-2">
+            <div class="p-1.5 rounded-md bg-school-50 text-school-600 border border-school-100 shrink-0">
+              <i data-lucide="dna" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="statBiologyPapers" class="text-base font-bold text-school-700 leading-none">0</div>
+              <div class="text-[9px] font-medium text-slate-500 truncate">Biology</div>
+            </div>
+          </div>
+
+          <div id="statChemCard" class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm flex items-center gap-2">
+            <div class="p-1.5 rounded-md bg-school-50 text-school-600 border border-school-100 shrink-0">
+              <i data-lucide="flask-conical" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="statChemistryPapers" class="text-base font-bold text-school-700 leading-none">0</div>
+              <div class="text-[9px] font-medium text-slate-500 truncate">Chemistry</div>
+            </div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm flex items-center gap-2">
+            <div class="p-1.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
+              <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="text-base font-bold text-slate-800 leading-none">7–13</div>
+              <div class="text-[9px] font-medium text-slate-500 truncate">Years</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Controls Bar (Includes Academic Year Filter) -->
+        <section class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 flex-1">
+              <!-- Class Filter -->
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1" for="filterClass">
+                  Class / Year
+                </label>
+                <select 
+                  id="filterClass"
+                  onchange="onFilterChange()"
+                  onkeydown="if(event.key==='Enter')applyFilters()"
+                  class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-school-600 outline-none cursor-pointer"
+                >
+                  <option value="all">All Classes</option>
+                  <option value="Year 7">Year 7</option>
+                  <option value="Year 8">Year 8</option>
+                  <option value="Year 9">Year 9</option>
+                  <option value="Year 10">Year 10</option>
+                  <option value="Year 11">Year 11</option>
+                  <option value="Year 12">Year 12</option>
+                  <option value="Year 13">Year 13</option>
+                </select>
+              </div>
+
+              <!-- Subject Filter -->
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1" for="filterSubject">
+                  Subject
+                </label>
+                <select 
+                  id="filterSubject"
+                  onchange="onFilterChange()"
+                  onkeydown="if(event.key==='Enter')applyFilters()"
+                  class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-school-600 outline-none cursor-pointer"
+                >
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <!-- Academic Year Filter (2024, 2025, 2026...) -->
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1" for="filterAcademicYear">
+                  Academic Year
+                </label>
+                <select 
+                  id="filterAcademicYear"
+                  onchange="onFilterChange()"
+                  onkeydown="if(event.key==='Enter')applyFilters()"
+                  class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-school-600 outline-none cursor-pointer"
+                >
+                  <option value="all">All Academic Years</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                </select>
+              </div>
+
+              <!-- Term Filter -->
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1" for="filterTerm">
+                  Term
+                </label>
+                <select 
+                  id="filterTerm"
+                  onchange="onFilterChange()"
+                  onkeydown="if(event.key==='Enter')applyFilters()"
+                  class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-school-600 outline-none cursor-pointer"
+                >
+                  <option value="all">All Terms (Term 1 - 3)</option>
+                  <option value="Term 1">Term 1</option>
+                  <option value="Term 2">Term 2</option>
+                  <option value="Term 3">Term 3</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Apply Button -->
+            <div class="flex items-center gap-2 justify-end pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+              <button 
+                onclick="applyFilters()" 
+                class="px-4 py-1.5 text-xs font-semibold text-white bg-school-700 hover:bg-school-800 rounded-lg shadow-sm transition flex items-center gap-1.5"
+              >
+                <i data-lucide="filter" class="w-3.5 h-3.5"></i>
+                <span>Apply Filters</span>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Papers Content -->
+        <section>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+              <span>Uploaded Documents</span>
+              <span id="paperResultsCount" class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-semibold">0</span>
+            </h3>
+
+            <!-- Direct Upload Document Button in section header -->
+            <button 
+              id="sectionUploadBtn"
+              onclick="openUploadModal()"
+              class="flex items-center space-x-1.5 px-3.5 py-1.5 bg-school-700 hover:bg-school-800 text-white rounded-lg text-xs font-semibold shadow-sm transition active:scale-95"
+            >
+              <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+              <span>Upload Document</span>
+            </button>
+          </div>
+
+          <!-- Papers Container -->
+          <div id="papersListContainer"></div>
+
+          <!-- Empty State -->
+          <div id="emptyState" class="hidden bg-white border border-dashed border-slate-300 rounded-2xl p-12 text-center shadow-sm">
+            <div class="w-16 h-16 bg-school-50 text-school-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-school-200">
+              <i data-lucide="file-question" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-800">No papers found</h3>
+            <p class="text-sm text-slate-500 max-w-md mx-auto mt-1 mb-6">
+              There are currently no papers matching your authorized subjects or filter selections.
+            </p>
+            <button 
+              id="emptyUploadBtn"
+              onclick="openUploadModal()"
+              class="inline-flex items-center space-x-2 px-4 py-2.5 bg-school-700 hover:bg-school-800 text-white rounded-lg text-sm font-semibold shadow transition"
+            >
+              <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+              <span>Upload Document</span>
+            </button>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- MAIN CONTENT VIEW 2: ADMIN DASHBOARD (ANALYTICS) -->
+      <main id="dashboardMainView" class="hidden flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+
+        <!-- Dashboard Header Banner -->
+        <div class="bg-gradient-to-r from-school-100 via-school-50 to-emerald-100 text-school-950 p-6 rounded-2xl border border-school-300 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center space-x-3.5">
+            <div class="p-3 bg-white rounded-xl border border-school-200 shadow-xs">
+              <i data-lucide="bar-chart-3" class="w-8 h-8 text-school-700"></i>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-school-950">Paper Analytics Dashboard</h2>
+              <p class="text-xs text-school-800 mt-0.5">Track how the exam paper archive is growing by academic year and by class.</p>
+            </div>
+          </div>
+
+          <button 
+            onclick="showDashboardTab('admin')" 
+            class="px-4 py-2.5 bg-school-700 hover:bg-school-800 text-white font-bold rounded-xl text-sm shadow-sm transition flex items-center space-x-2 self-start sm:self-auto cursor-pointer"
+          >
+            <i data-lucide="users" class="w-4 h-4"></i>
+            <span>Manage Teachers</span>
+          </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-school-50 text-school-700 border border-school-100 shrink-0">
+              <i data-lucide="files" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="dashTotalPapers" class="text-2xl font-bold text-slate-900 leading-none">0</div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Total Papers</div>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-school-50 text-school-700 border border-school-100 shrink-0">
+              <i data-lucide="dna" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="dashBiologyPapers" class="text-2xl font-bold text-school-700 leading-none">0</div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Biology Papers</div>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-teal-50 text-teal-700 border border-teal-100 shrink-0">
+              <i data-lucide="flask-conical" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="dashChemistryPapers" class="text-2xl font-bold text-teal-700 leading-none">0</div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Chemistry Papers</div>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
+              <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0">
+              <div id="dashClassesCovered" class="text-2xl font-bold text-slate-900 leading-none">0</div>
+              <div class="text-[11px] font-medium text-slate-500 mt-1 truncate">Classes Covered</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <section class="bg-white rounded-2xl border border-school-200 shadow-sm p-4 sm:p-5">
+          <div>
+            <h3 class="font-bold text-school-950 text-base">Quick Actions</h3>
+            <p class="text-xs text-school-700 mt-0.5">Jump straight to the most common tasks</p>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <button 
+              onclick="openUploadModal()" 
+              class="group flex items-center gap-2.5 rounded-xl border border-school-200 bg-school-50/70 p-3 text-left transition hover:border-school-300 hover:bg-school-100 cursor-pointer"
+            >
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-school-200 bg-white text-school-700 transition group-hover:scale-105">
+                <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+              </span>
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-semibold text-school-950">Upload Paper</span>
+                <span class="block truncate text-[11px] text-slate-500">Add a new exam paper</span>
+              </span>
+            </button>
+
+            <button 
+              onclick="showDashboardTab('papers'); selectFilterFromSidebar('all', 'all')" 
+              class="group flex items-center gap-2.5 rounded-xl border border-school-200 bg-school-50/70 p-3 text-left transition hover:border-school-300 hover:bg-school-100 cursor-pointer"
+            >
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-school-200 bg-white text-school-700 transition group-hover:scale-105">
+                <i data-lucide="library" class="w-4 h-4"></i>
+              </span>
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-semibold text-school-950">Browse Papers</span>
+                <span class="block truncate text-[11px] text-slate-500">Open the full archive</span>
+              </span>
+            </button>
+
+            <button 
+              onclick="showDashboardTab('admin')" 
+              class="group flex items-center gap-2.5 rounded-xl border border-school-200 bg-school-50/70 p-3 text-left transition hover:border-school-300 hover:bg-school-100 cursor-pointer"
+            >
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-school-200 bg-white text-school-700 transition group-hover:scale-105">
+                <i data-lucide="users" class="w-4 h-4"></i>
+              </span>
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-semibold text-school-950">Manage Teachers</span>
+                <span class="block truncate text-[11px] text-slate-500">Permissions & accounts</span>
+              </span>
+            </button>
+
+            <button 
+              onclick="showDashboardTab('admin'); openAddTeacherModal()" 
+              class="group flex items-center gap-2.5 rounded-xl border border-school-200 bg-school-50/70 p-3 text-left transition hover:border-school-300 hover:bg-school-100 cursor-pointer"
+            >
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-school-200 bg-white text-school-700 transition group-hover:scale-105">
+                <i data-lucide="user-plus" class="w-4 h-4"></i>
+              </span>
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-semibold text-school-950">Add Teacher</span>
+                <span class="block truncate text-[11px] text-slate-500">Create a new login</span>
+              </span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <div class="bg-white rounded-2xl border border-school-200 shadow-sm p-4 sm:p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-school-950 text-base">Papers by Academic Year</h3>
+                <p class="text-xs text-school-700 mt-0.5">Trend of uploaded papers per academic year</p>
+              </div>
+              <span class="inline-flex items-center gap-1 rounded-full border border-school-200 bg-school-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-school-800 shrink-0">
+                <i data-lucide="trending-up" class="w-3 h-3"></i>
+                Trend
+              </span>
+            </div>
+            <div class="mt-4 h-64 sm:h-72">
+              <canvas id="yearTrendChart" aria-label="Paper trend by academic year" role="img"></canvas>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-school-200 shadow-sm p-4 sm:p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-school-950 text-base">Papers by Class</h3>
+                <p class="text-xs text-school-700 mt-0.5">Distribution across all classes</p>
+              </div>
+              <span class="inline-flex items-center gap-1 rounded-full border border-school-200 bg-school-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-school-800 shrink-0">
+                <i data-lucide="layers" class="w-3 h-3"></i>
+                Classes
+              </span>
+            </div>
+            <div class="mt-4 h-64 sm:h-72">
+              <canvas id="classDistributionChart" aria-label="Paper distribution by class" role="img"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- MAIN CONTENT VIEW 3: ADMINISTRATION (MATCHING SAME LIGHT GREEN COLOR SCHEME) -->
+      <main id="adminMainView" class="hidden flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+        
+        <!-- Admin Header Banner (Light Green Theme with Forest Green Text) -->
+        <div class="bg-gradient-to-r from-school-100 via-school-50 to-emerald-100 text-school-950 p-6 rounded-2xl border border-school-300 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center space-x-3.5">
+            <div class="p-3 bg-white rounded-xl border border-school-200 shadow-xs">
+              <i data-lucide="shield-check" class="w-8 h-8 text-school-700"></i>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-school-950">Faculty & Teacher Management</h2>
+              <p class="text-xs text-school-800 mt-0.5">Control teacher logins, subject permissions (Biology & Chemistry), view details and activity.</p>
+            </div>
+          </div>
+
+          <button 
+            onclick="openAddTeacherModal()" 
+            class="px-4 py-2.5 bg-school-700 hover:bg-school-800 text-white font-bold rounded-xl text-sm shadow-sm transition flex items-center space-x-2 self-start sm:self-auto cursor-pointer"
+          >
+            <i data-lucide="user-plus" class="w-4 h-4"></i>
+            <span>Register New Teacher</span>
+          </button>
+        </div>
+
+        <!-- Teachers Table Card (Light Green Themed Table) -->
+        <div class="bg-white rounded-2xl border border-school-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-5 border-b border-school-200 bg-school-50/70 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="users" class="w-5 h-5 text-school-700"></i>
+              <h3 class="font-bold text-school-950 text-base">Registered Faculty Teachers</h3>
+              <span id="adminTableCountBadge" class="text-xs bg-school-200 text-school-900 border border-school-300 font-bold px-2.5 py-0.5 rounded-full ml-2">0 teachers</span>
+            </div>
+            <span class="text-xs text-school-800">Default password for new teachers is <strong>123</strong></span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-600">
+              <thead class="bg-school-50 text-xs uppercase font-semibold text-school-800 border-b border-school-200">
+                <tr>
+                  <th class="px-5 py-3.5">Teacher Name</th>
+                  <th class="px-5 py-3.5">Username</th>
+                  <th class="px-5 py-3.5">Subject Permissions</th>
+                  <th class="px-5 py-3.5">Password</th>
+                  <th class="px-5 py-3.5 text-center">Uploaded Papers</th>
+                  <th class="px-5 py-3.5 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminTeachersTableBody" class="divide-y divide-school-100">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Footer (fixed to viewport bottom) -->
+      <div class="h-12 shrink-0" aria-hidden="true"></div>
+      <footer class="fixed bottom-0 left-0 md:left-64 right-0 z-30 bg-white border-t border-slate-200 py-3 px-6 text-center text-xs text-slate-500">
+        <p>© 2026 Cambridge Assessment International Education • Biology & Chemistry Department</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ==================== ADD NEW TEACHER MODAL (LIGHT GREEN THEME) ==================== -->
+  <div id="addTeacherModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-slate-100 animate-fade-in overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="px-6 py-4 bg-school-800 text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="user-plus" class="w-5 h-5 text-school-200"></i>
+          <h3 class="font-bold text-base">Add New Teacher</h3>
+        </div>
+        <button onclick="closeAddTeacherModal()" class="text-school-200 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="addTeacherForm" onsubmit="handleAddTeacherSubmit(event)" class="p-6 space-y-4 overflow-y-auto">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="newTeacherName">
+            Teacher Full Name *
+          </label>
+          <input 
+            id="newTeacherName" 
+            type="text" 
+            required 
+            placeholder="e.g. Dr. Jane Smith"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="newTeacherEmail">
+              Email Address
+            </label>
+            <input 
+              id="newTeacherEmail" 
+              type="email" 
+              placeholder="e.g. jsmith@tis.ac.ke"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="newTeacherPhone">
+              Phone Number
+            </label>
+            <input 
+              id="newTeacherPhone" 
+              type="tel" 
+              inputmode="tel"
+              placeholder="e.g. +254 712 345 678"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="newTeacherUsername">
+            Login Username *
+          </label>
+          <input 
+            id="newTeacherUsername" 
+            type="text" 
+            required 
+            placeholder="e.g. jsmith"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="newTeacherPassword">
+            Password (Default: 123)
+          </label>
+          <input 
+            id="newTeacherPassword" 
+            type="text" 
+            value="123" 
+            placeholder="123"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none font-mono"
+          />
+          <p class="text-[11px] text-slate-400 mt-1">Pre-filled with default password: <strong>123</strong></p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            Assigned Subject Scope *
+          </label>
+          <select 
+            id="newTeacherSubjects" 
+            required
+            class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none cursor-pointer"
+          >
+            <option value="Biology" selected>🧬 Biology Only</option>
+            <option value="Chemistry">⚗️ Chemistry Only</option>
+            <option value="Both">🧬 & ⚗️ Both Subjects</option>
+          </select>
+        </div>
+
+        <div id="addTeacherError" class="hidden p-3 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200"></div>
+
+        <div class="pt-3 flex items-center justify-end space-x-3 border-t border-slate-100">
+          <button 
+            type="button" 
+            onclick="closeAddTeacherModal()" 
+            class="px-4 py-2 text-slate-600 hover:bg-slate-100 font-semibold text-sm rounded-lg"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            id="addTeacherSubmitBtn"
+            class="px-5 py-2.5 bg-school-700 hover:bg-school-800 text-white font-semibold rounded-lg text-sm shadow transition"
+          >
+            Register Teacher
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== ADD YEAR / CLASS MODAL ==================== -->
+  <div id="addClassModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full border border-slate-100 animate-fade-in overflow-hidden">
+      <div class="px-5 py-4 bg-school-800 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="calendar-plus" class="w-5 h-5 text-school-200"></i>
+          <h3 class="font-bold text-base">Add Year / Class</h3>
+        </div>
+        <button type="button" onclick="closeAddClassModal()" class="text-school-200 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="addClassForm" onsubmit="handleAddClassSubmit(event)" class="p-5 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="newClassName">
+            Class Name *
+          </label>
+          <input 
+            id="newClassName" 
+            type="text" 
+            required 
+            maxlength="30"
+            placeholder="e.g. Year 14 or Grade 8"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+          />
+          <p class="text-[11px] text-slate-400 mt-1">Appears in the sidebar, paper filters and upload form.</p>
+        </div>
+
+        <div id="addClassError" class="hidden p-3 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200"></div>
+
+        <div class="pt-1 flex items-center justify-end space-x-3 border-t border-slate-100">
+          <button 
+            type="button" 
+            onclick="closeAddClassModal()" 
+            class="px-4 py-2 text-slate-600 hover:bg-slate-100 font-semibold text-sm rounded-lg"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            id="addClassSubmitBtn"
+            class="px-5 py-2.5 bg-school-700 hover:bg-school-800 text-white font-semibold rounded-lg text-sm shadow transition"
+          >
+            Add Class
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== EDIT TEACHER MODAL (LIGHT GREEN THEME) ==================== -->
+  <div id="editTeacherModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-slate-100 animate-fade-in overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="px-6 py-4 bg-school-800 text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="user-pen" class="w-5 h-5 text-school-200"></i>
+          <h3 class="font-bold text-base">Edit Teacher Details</h3>
+        </div>
+        <button onclick="closeEditTeacherModal()" class="text-school-200 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="editTeacherForm" onsubmit="handleEditTeacherSubmit(event)" class="p-6 space-y-4 overflow-y-auto">
+        <input type="hidden" id="editTeacherId" />
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="editTeacherName">
+            Teacher Full Name *
+          </label>
+          <input 
+            id="editTeacherName" 
+            type="text" 
+            required 
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="editTeacherEmail">
+              Email Address
+            </label>
+            <input 
+              id="editTeacherEmail" 
+              type="email" 
+              placeholder="e.g. jsmith@tis.ac.ke"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="editTeacherPhone">
+              Phone Number
+            </label>
+            <input 
+              id="editTeacherPhone" 
+              type="tel" 
+              inputmode="tel"
+              placeholder="e.g. +254 712 345 678"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="editTeacherUsername">
+            Username *
+          </label>
+          <input 
+            id="editTeacherUsername" 
+            type="text" 
+            required 
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            Subject Scope *
+          </label>
+          <select 
+            id="editTeacherSubjects" 
+            required
+            class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none cursor-pointer"
+          >
+            <option value="Biology">🧬 Biology Only</option>
+            <option value="Chemistry">⚗️ Chemistry Only</option>
+            <option value="Both">🧬 & ⚗️ Both Subjects</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="editTeacherPassword">
+            Reset Password (Optional)
+          </label>
+          <input 
+            id="editTeacherPassword" 
+            type="text" 
+            placeholder="Leave blank to keep current password"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 outline-none font-mono"
+          />
+        </div>
+
+        <div id="editTeacherError" class="hidden p-3 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200"></div>
+
+        <div class="pt-3 flex items-center justify-end space-x-3 border-t border-slate-100">
+          <button 
+            type="button" 
+            onclick="closeEditTeacherModal()" 
+            class="px-4 py-2 text-slate-600 hover:bg-slate-100 font-semibold text-sm rounded-lg"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            id="editTeacherSubmitBtn"
+            class="px-5 py-2.5 bg-school-700 hover:bg-school-800 text-white font-semibold rounded-lg text-sm shadow transition"
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW TEACHER DETAILS MODAL ==================== -->
+  <div id="viewTeacherModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full border border-slate-100 animate-fade-in overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="px-6 py-4 bg-school-900 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="user-check" class="w-5 h-5 text-emerald-400"></i>
+          <h3 class="font-bold text-base">Teacher Profile & Details</h3>
+        </div>
+        <button onclick="closeViewTeacherModal()" class="text-slate-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-6 flex-1">
+        <!-- Profile Card -->
+        <div class="flex items-center space-x-4 p-4 rounded-xl bg-school-50 border border-school-200">
+          <div class="w-14 h-14 rounded-2xl bg-school-700 text-white flex items-center justify-center font-bold text-xl shadow">
+            <span id="detailTeacherAvatar">T</span>
+          </div>
+          <div>
+            <h4 id="detailTeacherName" class="text-lg font-bold text-slate-800">Teacher Name</h4>
+            <div class="flex items-center space-x-2 mt-1">
+              <span id="detailTeacherUsername" class="font-mono text-xs text-slate-600 bg-white border border-slate-200 px-2 py-0.5 rounded">username</span>
+              <span id="detailTeacherScopeBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full">Scope</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="p-3 rounded-lg bg-school-50 border border-school-200">
+            <span class="text-slate-500 block font-semibold uppercase tracking-wider mb-1">Current Password</span>
+            <span id="detailTeacherPassword" class="font-mono font-bold text-school-800 text-sm">123</span>
+          </div>
+          <div class="p-3 rounded-lg bg-school-50 border border-school-200">
+            <span class="text-slate-500 block font-semibold uppercase tracking-wider mb-1">Member Since</span>
+            <span id="detailTeacherDate" class="font-semibold text-slate-700 text-sm">Today</span>
+          </div>
+          <div class="p-3 rounded-lg bg-school-50 border border-school-200">
+            <span class="text-slate-500 block font-semibold uppercase tracking-wider mb-1">Email Address</span>
+            <span id="detailTeacherEmail" class="font-semibold text-slate-700 text-sm break-all">—</span>
+          </div>
+          <div class="p-3 rounded-lg bg-school-50 border border-school-200">
+            <span class="text-slate-500 block font-semibold uppercase tracking-wider mb-1">Phone Number</span>
+            <span id="detailTeacherPhone" class="font-semibold text-slate-700 text-sm">—</span>
+          </div>
+        </div>
+
+        <!-- Uploaded Papers History -->
+        <div>
+          <h5 class="font-bold text-sm text-slate-800 mb-2 flex items-center justify-between">
+            <span>Papers Uploaded by this Teacher</span>
+            <span id="detailTeacherPapersBadge" class="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-mono">0 papers</span>
+          </h5>
+          <div id="detailTeacherPapersList" class="space-y-2 max-h-48 overflow-y-auto">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end">
+        <button 
+          onclick="closeViewTeacherModal()" 
+          class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold text-sm rounded-lg"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PREVIEW PAPER MODAL ==================== -->
+  <div id="previewModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/70 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[90vh] border border-slate-100 overflow-hidden flex flex-col animate-fade-in">
+      <div class="px-4 sm:px-6 py-3 bg-school-800 text-white flex items-center justify-between gap-3 shrink-0">
+        <div class="min-w-0">
+          <h3 id="previewTitle" class="font-bold text-sm sm:text-base truncate">Paper preview</h3>
+          <p id="previewMeta" class="text-[11px] text-school-200 truncate"></p>
+        </div>
+        <button type="button" onclick="closePreviewModal()" class="text-school-200 hover:text-white p-1 rounded-lg shrink-0" title="Close preview">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="flex-1 min-h-0 bg-slate-100 relative">
+        <div id="previewLoading" class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-slate-500">
+          <div class="w-8 h-8 border-4 border-school-600 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-xs">Loading preview…</p>
+        </div>
+
+        <iframe id="previewFrame" class="hidden w-full h-full border-0 bg-white" title="Paper preview"></iframe>
+
+        <div id="previewImageWrap" class="hidden absolute inset-0 overflow-auto p-4 flex items-center justify-center">
+          <img id="previewImage" class="max-w-full max-h-full object-contain shadow-lg bg-white" alt="Paper preview" />
+        </div>
+
+        <div id="previewUnavailable" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center p-6 gap-3">
+          <div class="w-14 h-14 rounded-full bg-white border border-slate-200 text-school-700 flex items-center justify-center">
+            <i data-lucide="file-text" class="w-7 h-7"></i>
+          </div>
+          <div>
+            <p id="previewUnavailableTitle" class="text-sm font-bold text-slate-800">Preview not available</p>
+            <p id="previewUnavailableText" class="text-xs text-slate-500 mt-1 max-w-sm">Download the paper to open it in its native application.</p>
+          </div>
+          <button type="button" onclick="downloadPreviewedPaper()" class="inline-flex items-center space-x-2 px-4 py-2 bg-school-700 hover:bg-school-800 text-white rounded-lg text-sm font-semibold shadow transition">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Download instead</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-6 py-3 bg-white border-t border-slate-200 flex items-center justify-between gap-3 shrink-0">
+        <span id="previewFileInfo" class="text-[11px] text-slate-500 truncate"></span>
+        <div class="flex items-center gap-2 shrink-0">
+          <button type="button" onclick="closePreviewModal()" class="px-3.5 py-2 text-slate-600 hover:bg-slate-100 font-semibold text-xs rounded-lg transition">Close</button>
+          <button type="button" onclick="downloadPreviewedPaper()" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-school-700 hover:bg-school-800 text-white rounded-lg text-xs font-semibold shadow transition">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Download</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MY ACCOUNT MODAL ==================== -->
+  <div id="myAccountModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-slate-100 animate-fade-in">
+      <!-- ACCOUNT MENU -->
+      <div id="accountMenuScreen">
+        <div class="flex items-center justify-between px-5 pt-4">
+          <h3 class="font-bold text-base text-school-950">My Account</h3>
+          <button type="button" onclick="closeMyAccountModal()" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg" title="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="px-5 pb-5">
+          <div class="mt-3 flex items-center gap-3.5 rounded-2xl border border-school-200 bg-school-50 p-4">
+            <div class="w-14 h-14 rounded-full bg-school-700 text-white flex items-center justify-center font-bold text-lg shrink-0 shadow">
+              <span id="accountAvatarLetter">U</span>
+            </div>
+            <div class="min-w-0">
+              <div id="accountName" class="font-bold text-base text-school-950 truncate">User</div>
+              <div id="accountUsername" class="text-xs text-school-700 truncate">@username</div>
+              <div id="accountMenuOffice" class="text-[11px] text-slate-500 truncate">Office: Head Office</div>
+            </div>
+          </div>
+
+          <div class="mt-4 rounded-2xl border border-school-200 bg-white overflow-hidden divide-y divide-school-100">
+            <button type="button" onclick="showAccountSettings()" class="w-full flex items-center gap-3 px-4 py-3.5 text-left hover:bg-school-50 transition group cursor-pointer">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-school-200 bg-school-50 text-school-700">
+                <i data-lucide="user-cog" class="w-5 h-5"></i>
+              </span>
+              <span class="flex-1 text-sm font-semibold text-school-950">Profile &amp; Settings</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-school-700 transition"></i>
+            </button>
+
+            <div class="flex items-center gap-3 px-4 py-3.5">
+              <span id="themeModeIconWrap" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-school-200 bg-school-50 text-school-700">
+                <i data-lucide="sun" class="w-5 h-5"></i>
+              </span>
+              <div class="flex-1 min-w-0">
+                <div id="themeModeLabel" class="text-sm font-semibold text-school-950">Light mode</div>
+                <div class="text-[11px] text-slate-500">Tap to switch appearance</div>
+              </div>
+              <button type="button" id="themeToggle" onclick="toggleTheme()" role="switch" aria-checked="false" aria-label="Toggle dark mode" class="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border border-slate-300 bg-slate-200 transition cursor-pointer">
+                <span id="themeToggleThumb" class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition translate-x-1"></span>
+              </button>
+            </div>
+          </div>
+
+          <button type="button" onclick="handleAccountSignOut()" class="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-red-200 bg-red-50 text-red-600 font-bold text-sm hover:bg-red-100 transition cursor-pointer">
+            <i data-lucide="power" class="w-4 h-4"></i>
+            <span>Sign out</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PROFILE & SETTINGS -->
+      <div id="accountSettingsScreen" class="hidden">
+        <div class="px-5 py-4 border-b border-school-200 bg-white sticky top-0 z-10 flex items-center gap-3">
+          <button type="button" onclick="showAccountMenu()" class="p-1.5 rounded-lg text-slate-500 hover:text-school-800 hover:bg-school-50 transition" title="Back">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <div class="min-w-0">
+            <h3 class="font-bold text-base text-school-950">Profile &amp; Settings</h3>
+            <p class="text-[11px] text-slate-500 truncate">Update your name and password</p>
+          </div>
+          <button type="button" onclick="closeMyAccountModal()" class="ml-auto text-slate-400 hover:text-slate-700 p-1 rounded-lg" title="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="p-5 space-y-5">
+          <div class="space-y-2">
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="p-2 rounded-lg bg-white border border-school-200">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Role</div>
+                <div id="accountRole" class="font-semibold text-school-900 capitalize">—</div>
+              </div>
+              <div class="p-2 rounded-lg bg-white border border-school-200">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Subject Access</div>
+                <div id="accountSubjects" class="font-semibold text-school-900">—</div>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-white border border-school-200 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Current Password</div>
+                <div id="accountCurrentPassword" class="font-mono font-semibold text-school-900 text-xs truncate">••••••</div>
+              </div>
+              <button type="button" onclick="toggleAccountPasswordVisibility()" class="text-school-700 hover:text-school-900 p-1.5 rounded-lg hover:bg-school-50 shrink-0" title="Show / hide password">
+                <i data-lucide="eye" id="accountPasswordEye" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Edit profile form -->
+        <form id="editProfileForm" onsubmit="handleUpdateProfileSubmit(event)" class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600">Profile Details</h4>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-1" for="accountNameInput">Full Name</label>
+            <input id="accountNameInput" type="text" required placeholder="Your full name"
+              class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-school-600 focus:ring-2 focus:ring-school-200 outline-none text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-1" for="accountUsernameInput">Username</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+              </span>
+              <input id="accountUsernameInput" type="text" readonly tabindex="-1"
+                class="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 bg-slate-100 text-slate-500 text-sm cursor-not-allowed outline-none" />
+            </div>
+            <p class="text-[10px] text-slate-400 mt-1">Username can only be changed by an administrator.</p>
+          </div>
+
+          <div id="accountProfileError" class="hidden p-2.5 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200 flex items-center space-x-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+            <span id="accountProfileErrorText">Error</span>
+          </div>
+
+          <div id="accountProfileSuccess" class="hidden p-2.5 bg-emerald-50 text-emerald-700 text-xs rounded-lg border border-emerald-200 flex items-center space-x-2">
+            <i data-lucide="check-circle" class="w-4 h-4 shrink-0"></i>
+            <span>Profile updated successfully.</span>
+          </div>
+
+          <div class="flex items-center justify-end">
+            <button type="submit" id="editProfileSubmitBtn" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-school-700 hover:bg-school-800 text-white rounded-lg text-xs font-semibold shadow transition">
+              <i data-lucide="save" class="w-4 h-4"></i>
+              <span>Save Profile</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Change password form -->
+        <form id="changePasswordForm" onsubmit="handleChangePasswordSubmit(event)" class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600">Change Password</h4>
+            <button type="button" onclick="toggleChangePasswordVisibility()" class="inline-flex items-center space-x-1 text-[11px] font-semibold text-school-700 hover:text-school-900 hover:bg-school-50 px-2 py-1 rounded-lg transition" title="Show / hide passwords">
+              <i data-lucide="eye" id="changePasswordEye" class="w-4 h-4"></i>
+              <span id="changePasswordEyeLabel">Show</span>
+            </button>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-1" for="accountCurrentInput">Current Password</label>
+            <input id="accountCurrentInput" type="password" required placeholder="Enter current password"
+              class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-school-600 focus:ring-2 focus:ring-school-200 outline-none text-sm" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-1" for="accountNewInput">New Password</label>
+              <input id="accountNewInput" type="password" required minlength="3" placeholder="At least 3 characters"
+                class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-school-600 focus:ring-2 focus:ring-school-200 outline-none text-sm" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-1" for="accountConfirmInput">Confirm New Password</label>
+              <input id="accountConfirmInput" type="password" required minlength="3" placeholder="Repeat new password"
+                class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-school-600 focus:ring-2 focus:ring-school-200 outline-none text-sm" />
+            </div>
+          </div>
+
+          <div id="accountPasswordError" class="hidden p-2.5 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200 flex items-center space-x-2">
+            <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+            <span id="accountPasswordErrorText">Error</span>
+          </div>
+
+          <div id="accountPasswordSuccess" class="hidden p-2.5 bg-emerald-50 text-emerald-700 text-xs rounded-lg border border-emerald-200 flex items-center space-x-2">
+            <i data-lucide="check-circle" class="w-4 h-4 shrink-0"></i>
+            <span>Password updated successfully.</span>
+          </div>
+
+          <div class="flex items-center justify-end gap-2 pt-1">
+            <button type="button" onclick="closeMyAccountModal()" class="px-3.5 py-2 text-slate-600 hover:bg-slate-100 font-semibold text-xs rounded-lg transition">Cancel</button>
+            <button type="submit" id="changePasswordSubmitBtn" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-school-700 hover:bg-school-800 text-white rounded-lg text-xs font-semibold shadow transition">
+              <i data-lucide="key-round" class="w-4 h-4"></i>
+              <span>Update Password</span>
+            </button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== UPLOAD DOCUMENT MODAL ==================== -->
+  <div id="uploadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-slate-100 animate-fade-in">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-school-800 text-white rounded-t-2xl flex items-center justify-between sticky top-0 z-10">
+        <div class="flex items-center space-x-2.5">
+          <div class="p-2 bg-school-700 rounded-lg">
+            <i data-lucide="upload" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base">Upload Document</h3>
+            <p class="text-xs text-school-200" id="uploadModalSubtext">Upload exam or test paper</p>
+          </div>
+        </div>
+        <button onclick="closeUploadModal()" class="text-school-200 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Form -->
+      <form id="uploadForm" class="p-6 space-y-4" onsubmit="handleUploadSubmit(event)">
+        
+        <!-- Document Title -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadTitle">
+            Document Title / Name *
+          </label>
+          <input 
+            id="uploadTitle" 
+            type="text" 
+            required 
+            placeholder="e.g. End of Term 2 Examination"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none"
+          />
+        </div>
+
+        <!-- Class & Subject Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Class Dropdown (Year 7 - 13) -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadClass">
+              Class / Year *
+            </label>
+            <select 
+              id="uploadClass" 
+              required
+              class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none cursor-pointer"
+            >
+              <option value="" disabled selected>Select Year/Class</option>
+              <option value="Year 7">Year 7</option>
+              <option value="Year 8">Year 8</option>
+              <option value="Year 9">Year 9</option>
+              <option value="Year 10">Year 10</option>
+              <option value="Year 11">Year 11</option>
+              <option value="Year 12">Year 12</option>
+              <option value="Year 13">Year 13</option>
+            </select>
+          </div>
+
+          <!-- Subject Dropdown -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadSubject">
+              Subject *
+            </label>
+            <select 
+              id="uploadSubject" 
+              required
+              class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none cursor-pointer"
+            >
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Term & Academic Year Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Term Dropdown -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadTerm">
+              Term *
+            </label>
+            <select 
+              id="uploadTerm" 
+              required
+              class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none cursor-pointer"
+            >
+              <option value="" disabled selected>Select Term</option>
+              <option value="Term 1">Term 1</option>
+              <option value="Term 2">Term 2</option>
+              <option value="Term 3">Term 3</option>
+            </select>
+          </div>
+
+          <!-- Academic Exam Year -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadAcademicYear">
+              Academic Year
+            </label>
+            <select 
+              id="uploadAcademicYear" 
+              class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none cursor-pointer"
+            >
+              <option value="2026" selected>2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Paper Type -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadPaperType">
+            Paper Category / Type
+          </label>
+          <select 
+            id="uploadPaperType" 
+            class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none cursor-pointer"
+          >
+            <option value="End of Term Exam">End of Term Examination</option>
+            <option value="Mid-Term Assessment">Mid-Term Assessment</option>
+            <option value="Mock Examination">Mock Examination</option>
+            <option value="Topical Test">Topical Test / Quiz</option>
+            <option value="Mark Scheme / Answers">Mark Scheme / Answers</option>
+            <option value="Revision Pack / Practice">Revision Pack / Practice</option>
+            <option value="Practical / Lab Paper">Practical / Lab Paper</option>
+          </select>
+        </div>
+
+        <!-- Optional Description -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="uploadDescription">
+            Notes / Description (Optional)
+          </label>
+          <textarea 
+            id="uploadDescription" 
+            rows="2" 
+            placeholder="e.g. Paper 1 Multiple Choice + Paper 2 Extended Theory..."
+            class="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-school-600 focus:border-school-600 outline-none resize-none"
+          ></textarea>
+        </div>
+
+        <!-- File Upload Drag & Drop Zone -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            Attach Paper File (PDF, Word DOCX, Image) *
+          </label>
+          <div 
+            id="dropZone" 
+            onclick="document.getElementById('fileInput').click()"
+            class="drop-zone p-6 rounded-xl bg-slate-50 text-center cursor-pointer hover:bg-school-50/50"
+          >
+            <input 
+              type="file" 
+              id="fileInput" 
+              class="hidden" 
+              required
+              accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.png,.jpg,.jpeg,.zip"
+              onchange="handleFileSelected(this)"
+            />
+            <div id="dropZonePrompt">
+              <div class="w-12 h-12 bg-white text-school-700 rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm border border-slate-200">
+                <i data-lucide="file-up" class="w-6 h-6"></i>
+              </div>
+              <p class="text-sm font-semibold text-slate-700">Click to browse or drop file here</p>
+              <p class="text-xs text-slate-400 mt-1">PDF, Word Document, or Images up to 50MB</p>
+            </div>
+            
+            <div id="fileSelectedDisplay" class="hidden items-center justify-between bg-white p-3 rounded-lg border border-school-200 text-left">
+              <div class="flex items-center space-x-3 truncate">
+                <i data-lucide="file-check" class="w-6 h-6 text-school-600 shrink-0"></i>
+                <div class="truncate">
+                  <div id="selectedFileName" class="text-sm font-semibold text-slate-800 truncate">document.pdf</div>
+                  <div id="selectedFileSize" class="text-xs text-slate-500">1.2 MB</div>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                onclick="clearSelectedFile(event)" 
+                class="text-slate-400 hover:text-red-500 p-1"
+              >
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Error -->
+        <div id="uploadError" class="hidden p-3 bg-red-50 text-red-700 text-xs rounded-lg border border-red-200"></div>
+
+        <!-- Modal Action Buttons -->
+        <div class="pt-4 flex items-center justify-end space-x-3 border-t border-slate-100">
+          <button 
+            type="button" 
+            onclick="closeUploadModal()"
+            class="px-4 py-2 text-slate-600 hover:bg-slate-100 font-medium rounded-lg text-sm transition"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            id="uploadSubmitBtn"
+            class="px-5 py-2.5 bg-school-700 hover:bg-school-800 text-white font-semibold rounded-lg text-sm shadow-md transition flex items-center space-x-2"
+          >
+            <i data-lucide="cloud-upload" class="w-4 h-4"></i>
+            <span>Upload Document</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Paper Confirmation Modal -->
+  <div id="deletePaperModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full border border-slate-100 animate-fade-in overflow-hidden">
+      <div class="px-5 py-4 bg-red-600 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="trash-2" class="w-5 h-5 text-red-100"></i>
+          <h3 class="font-bold text-sm">Delete paper</h3>
+        </div>
+        <button type="button" onclick="closeDeletePaperModal()" class="text-red-100 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-5 space-y-4">
+        <p class="text-sm text-slate-600">This will permanently remove the file from the repository. You cannot undo this action.</p>
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Paper</p>
+          <p id="deletePaperTitle" class="text-sm font-semibold text-slate-900 break-words"></p>
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-1">
+          <button
+            type="button"
+            onclick="closeDeletePaperModal()"
+            class="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-200 transition"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            id="deletePaperConfirmBtn"
+            onclick="confirmDeletePaper()"
+            class="px-4 py-2 text-sm font-semibold bg-red-600 hover:bg-red-700 text-white rounded-lg shadow-sm transition flex items-center gap-1.5"
+          >
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Teacher Confirmation Modal -->
+  <div id="deleteTeacherModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-xl shadow-2xl max-w-xs w-full border border-slate-100 animate-fade-in overflow-hidden">
+      <div class="px-4 py-3 bg-school-700 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="user-x" class="w-4 h-4 text-school-100"></i>
+          <h3 class="font-bold text-sm">Delete teacher</h3>
+        </div>
+        <button type="button" onclick="closeDeleteTeacherModal()" class="text-school-100 hover:text-white p-0.5 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="p-4 space-y-3">
+        <p class="text-xs text-slate-600 leading-relaxed">This will remove their login and permissions. You cannot undo this action.</p>
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">Teacher</p>
+          <p id="deleteTeacherName" class="text-sm font-semibold text-slate-900 break-words"></p>
+          <p id="deleteTeacherUsername" class="text-[11px] text-slate-500 font-mono mt-0.5"></p>
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-1">
+          <button
+            type="button"
+            onclick="closeDeleteTeacherModal()"
+            class="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-200 transition"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            id="deleteTeacherConfirmBtn"
+            onclick="confirmDeleteTeacher()"
+            class="px-3 py-1.5 text-xs font-semibold bg-red-600 hover:bg-red-700 text-white rounded-lg shadow-sm transition flex items-center gap-1.5"
+          >
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div id="toastCard" class="bg-slate-800 text-white px-4 py-3 rounded-xl shadow-xl flex items-center space-x-3 text-sm">
+      <span id="toastIcon"></span>
+      <span id="toastMessage">Success</span>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
