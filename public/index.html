@@ -60,93 +60,110 @@
     <div class="relative z-10 lg:grid lg:grid-cols-[1.05fr_1fr]">
 
     <!-- Brand panel -->
-    <aside class="login-brand relative hidden overflow-hidden p-10 text-white lg:flex lg:flex-col xl:p-12">
-      <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-school-500/20 blur-3xl" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-school-300/10 blur-3xl" aria-hidden="true"></div>
+    <aside class="login-brand relative hidden overflow-hidden p-10 lg:flex lg:flex-col xl:p-12">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-school-300/40 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-school-200/40 blur-3xl" aria-hidden="true"></div>
 
       <div class="relative z-10 flex flex-1 flex-col">
         <img
-          src="/images/cambridge-logo-light.svg"
+          id="brandLogo"
+          src="/images/cambridge-logo.svg"
           alt="Cambridge Assessment International Education"
           class="h-10 w-auto self-start xl:h-11"
         />
 
         <div class="mt-10 xl:mt-14">
-          <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-school-400">Internal Staff Platform</p>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-school-100/80">
+          <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-school-700">Internal Staff Platform</p>
+          <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
             Securely manage Cambridge Biology &amp; Chemistry exam papers, faculty access, and teaching resources from one platform.
           </p>
         </div>
 
-        <div class="mt-8 grid max-w-xl grid-cols-2 gap-3">
-          <div class="login-tile flex items-start gap-2.5 rounded-xl px-3 py-2.5">
-            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-school-200 ring-1 ring-white/10">
-              <i data-lucide="file-text" class="h-3.5 w-3.5"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold text-white">Paper Repository</p>
-              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Browse exams by class, subject and term</p>
+        <div class="login-carousel mt-8 w-full" id="loginFeatureCarousel" role="region" aria-roledescription="carousel" aria-label="Platform features">
+          <div class="login-carousel-viewport">
+            <div class="login-carousel-track" id="loginFeatureTrack">
+              <div class="login-carousel-page">
+                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="file-text" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Paper Repository</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Browse exams by class, subject and term</p>
+                  </div>
+                </div>
+
+                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Role-Based Access</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Teachers see only their own subject</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="login-carousel-page">
+                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="upload-cloud" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Quick Uploads</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Add papers with full exam metadata</p>
+                  </div>
+                </div>
+
+                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="users" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Faculty Management</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Admins control accounts and permissions</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="login-carousel-page">
+                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="search" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Instant Search</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Find any paper in seconds</p>
+                  </div>
+                </div>
+
+                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="trending-up" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Live Statistics</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Track paper counts and downloads</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="login-tile flex items-start gap-2.5 rounded-xl px-3 py-2.5">
-            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-school-200 ring-1 ring-white/10">
-              <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold text-white">Role-Based Access</p>
-              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Teachers see only their own subject</p>
-            </div>
-          </div>
-
-          <div class="login-tile flex items-start gap-2.5 rounded-xl px-3 py-2.5">
-            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-school-200 ring-1 ring-white/10">
-              <i data-lucide="upload-cloud" class="h-3.5 w-3.5"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold text-white">Quick Uploads</p>
-              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Add papers with full exam metadata</p>
-            </div>
-          </div>
-
-          <div class="login-tile flex items-start gap-2.5 rounded-xl px-3 py-2.5">
-            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-school-200 ring-1 ring-white/10">
-              <i data-lucide="users" class="h-3.5 w-3.5"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold text-white">Faculty Management</p>
-              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Admins control accounts and permissions</p>
-            </div>
-          </div>
-
-          <div class="login-tile flex items-start gap-2.5 rounded-xl px-3 py-2.5">
-            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-school-200 ring-1 ring-white/10">
-              <i data-lucide="search" class="h-3.5 w-3.5"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold text-white">Instant Search</p>
-              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Find any paper in seconds</p>
-            </div>
-          </div>
-
-          <div class="login-tile flex items-start gap-2.5 rounded-xl px-3 py-2.5">
-            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-school-200 ring-1 ring-white/10">
-              <i data-lucide="trending-up" class="h-3.5 w-3.5"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="text-[11px] font-semibold text-white">Live Statistics</p>
-              <p class="mt-0.5 text-[10px] leading-snug text-school-100/65">Track paper counts and downloads</p>
-            </div>
+          <div class="login-carousel-dots" id="loginFeatureDots" aria-label="Choose feature slide">
+            <button type="button" class="login-carousel-dot is-active" aria-label="Show features 1 of 3" aria-current="true"></button>
+            <button type="button" class="login-carousel-dot" aria-label="Show features 2 of 3"></button>
+            <button type="button" class="login-carousel-dot" aria-label="Show features 3 of 3"></button>
           </div>
         </div>
 
         <div class="mt-auto pt-8">
           <div class="login-tile rounded-2xl p-4">
-            <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white">
-              <i data-lucide="headphones" class="h-4 w-4 text-school-400"></i>
+            <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-900">
+              <i data-lucide="headphones" class="h-4 w-4 text-school-600"></i>
               Need Help?
             </p>
-            <p class="mt-2 text-xs leading-relaxed text-school-100/75">
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">
               Contact the school administrator for account access or password resets.
             </p>
           </div>
@@ -262,7 +279,7 @@
       </form>
     </div>
 
-        <p class="mt-5 text-center text-[11px] text-white/60">© 2026 Cambridge Assessment International Education</p>
+        <p class="mt-5 text-center text-[11px] text-slate-500">© 2026 Cambridge Assessment International Education</p>
       </div>
     </div>
     </div>

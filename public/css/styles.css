@@ -203,10 +203,10 @@ html.dark #themeToggleThumb {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(1100px 720px at 10% 10%, rgba(103, 178, 74, 0.5) 0%, rgba(103, 178, 74, 0) 62%),
-    radial-gradient(880px 620px at 92% 4%, rgba(143, 198, 106, 0.32) 0%, rgba(143, 198, 106, 0) 58%),
-    radial-gradient(1000px 820px at 84% 98%, rgba(24, 74, 46, 0.85) 0%, rgba(24, 74, 46, 0) 60%),
-    linear-gradient(145deg, #0a2114 0%, #10361f 46%, #07190f 100%);
+    radial-gradient(1000px 720px at 8% 8%, rgba(174, 216, 143, 0.45) 0%, rgba(174, 216, 143, 0) 62%),
+    radial-gradient(820px 620px at 94% 2%, rgba(205, 229, 185, 0.6) 0%, rgba(205, 229, 185, 0) 58%),
+    radial-gradient(980px 800px at 88% 100%, rgba(240, 248, 234, 0.95) 0%, rgba(240, 248, 234, 0) 60%),
+    linear-gradient(145deg, #f9fcf6 0%, #eef8e7 46%, #e1f0d6 100%);
 }
 
 .login-orb {
@@ -222,8 +222,8 @@ html.dark #themeToggleThumb {
   left: -8rem;
   width: 36rem;
   height: 36rem;
-  background: radial-gradient(circle at 35% 35%, #8fc66a 0%, #4a8f2f 45%, rgba(74, 143, 47, 0) 72%);
-  opacity: 0.45;
+  background: radial-gradient(circle at 35% 35%, #b7dd97 0%, #9ecf7b 45%, rgba(158, 207, 123, 0) 72%);
+  opacity: 0.5;
   animation: loginOrbA 20s ease-in-out infinite alternate;
 }
 .login-orb--b {
@@ -231,8 +231,8 @@ html.dark #themeToggleThumb {
   bottom: -12rem;
   width: 30rem;
   height: 30rem;
-  background: radial-gradient(circle at 55% 45%, #f5c542 0%, #d98f2b 58%, rgba(217, 143, 43, 0) 78%);
-  opacity: 0.16;
+  background: radial-gradient(circle at 55% 45%, #f0e6b8 0%, #e2d191 58%, rgba(226, 209, 145, 0) 78%);
+  opacity: 0.4;
   animation: loginOrbB 26s ease-in-out infinite alternate;
 }
 .login-orb--c {
@@ -240,8 +240,8 @@ html.dark #themeToggleThumb {
   left: 44%;
   width: 24rem;
   height: 24rem;
-  background: radial-gradient(circle, #73b34b 0%, rgba(115, 179, 75, 0) 70%);
-  opacity: 0.28;
+  background: radial-gradient(circle, #cde5b9 0%, rgba(205, 229, 185, 0) 70%);
+  opacity: 0.5;
   animation: loginOrbA 24s ease-in-out infinite alternate-reverse;
 }
 
@@ -251,32 +251,86 @@ html.dark #themeToggleThumb {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(58, 107, 40, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 107, 40, 0.06) 1px, transparent 1px);
   background-size: 72px 72px;
   -webkit-mask-image: radial-gradient(circle at 30% 22%, #000 0%, transparent 72%);
   mask-image: radial-gradient(circle at 30% 22%, #000 0%, transparent 72%);
 }
 
 .login-brand {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(165deg, rgba(9, 30, 19, 0.64) 0%, rgba(11, 38, 24, 0.4) 52%, rgba(7, 22, 14, 0.58) 100%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
-  backdrop-filter: blur(20px) saturate(130%);
+  border-right: 1px solid rgba(58, 107, 40, 0.1);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.34) 52%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  backdrop-filter: blur(20px) saturate(120%);
 }
 
 .login-tile {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 26px -20px rgba(42, 78, 29, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 .login-tile:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.74);
   transform: translateY(-1px);
+}
+
+.login-tile-icon {
+  color: #3a6b28;
+  background: rgba(93, 164, 64, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(93, 164, 64, 0.18);
+}
+
+/* Feature carousel */
+.login-carousel {
+  position: relative;
+}
+.login-carousel-viewport {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.login-carousel-track {
+  display: flex;
+  transition: transform 0.75s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
+.login-carousel-page {
+  display: grid;
+  flex: 0 0 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
+}
+.login-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+.login-carousel-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: rgba(58, 107, 40, 0.22);
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+.login-carousel-dot:hover {
+  background: rgba(58, 107, 40, 0.4);
+}
+.login-carousel-dot.is-active {
+  width: 1.3rem;
+  background: #5da440;
+}
+.login-carousel-dot:focus-visible {
+  outline: 2px solid #5da440;
+  outline-offset: 3px;
 }
 
 .login-logo-slab {
@@ -290,11 +344,11 @@ html.dark #themeToggleThumb {
 .login-glass {
   position: relative;
   border-radius: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.72) 48%, rgba(255, 255, 255, 0.62) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.84) 0%, rgba(255, 255, 255, 0.68) 48%, rgba(255, 255, 255, 0.6) 100%);
   box-shadow:
-    0 36px 80px -32px rgba(3, 16, 9, 0.7),
-    0 14px 32px -20px rgba(3, 16, 9, 0.5),
+    0 36px 80px -36px rgba(42, 78, 29, 0.42),
+    0 14px 34px -22px rgba(42, 78, 29, 0.26),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
   backdrop-filter: blur(28px) saturate(160%);
@@ -421,6 +475,11 @@ html.dark .login-stage {
 }
 html.dark .login-orb { opacity: 0.24; }
 html.dark .login-orb--b { opacity: 0.1; }
+html.dark .login-grid-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
 html.dark .login-brand {
   border-right-color: rgba(148, 163, 184, 0.14);
   background: linear-gradient(165deg, rgba(4, 12, 8, 0.78) 0%, rgba(6, 18, 12, 0.58) 55%, rgba(3, 10, 6, 0.72) 100%);
@@ -438,6 +497,23 @@ html.dark .login-glass {
     0 14px 32px -20px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.09);
 }
+html.dark .login-tile {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+html.dark .login-tile:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.1);
+}
+html.dark .login-tile-icon {
+  color: #aed88f;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+html.dark .login-carousel-dot { background: rgba(255, 255, 255, 0.22); }
+html.dark .login-carousel-dot:hover { background: rgba(255, 255, 255, 0.4); }
+html.dark .login-carousel-dot.is-active { background: #8fc66a; }
 html.dark .login-chip {
   border-color: rgba(143, 198, 106, 0.24);
   background: rgba(19, 42, 58, 0.85);
@@ -480,7 +556,9 @@ html.dark .login-alert {
     animation: none !important;
   }
   .login-tile,
-  .login-submit {
+  .login-submit,
+  .login-carousel-track,
+  .login-carousel-dot {
     transition: none !important;
   }
   .login-tile:hover,
