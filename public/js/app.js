@@ -48,9 +48,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupEventListeners();
   restoreLoginPreferences();
+  initLoginFeatureBackground();
   applyTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light', { persist: false, refreshCharts: false });
   if (window.lucide) lucide.createIcons();
 });
+
+const LOGIN_FEATURES = [
+  ['file-text', 'Paper Repository'],
+  ['shield-check', 'Role-Based Access'],
+  ['upload-cloud', 'Quick Uploads'],
+  ['users', 'Faculty Management'],
+  ['search', 'Instant Search'],
+  ['trending-up', 'Live Statistics'],
+];
+
+function initLoginFeatureBackground() {
+  const bg = document.getElementById('loginFeatureBg');
+  if (!bg) return;
+
+  const rows = 4;
+  bg.innerHTML = '';
+  for (let r = 0; r < rows; r++) {
+    const row = document.createElement('div');
+    row.className = r % 2 ? 'login-bg-row login-bg-row--reverse' : 'login-bg-row';
+
+    const track = document.createElement('div');
+    track.className = 'login-bg-track';
+    for (let copy = 0; copy < 2; copy++) {
+      const set = document.createElement('div');
+      set.className = 'login-bg-set';
+      const start = (r * 2) % LOGIN_FEATURES.length;
+      const ordered = LOGIN_FEATURES.slice(start).concat(LOGIN_FEATURES.slice(0, start));
+      ordered.forEach(([icon, label]) => {
+        const card = document.createElement('div');
+        card.className = 'login-bg-card';
+        const iconEl = document.createElement('i');
+        iconEl.setAttribute('data-lucide', icon);
+        iconEl.className = 'h-4 w-4';
+        const text = document.createElement('span');
+        text.textContent = label;
+        card.append(iconEl, text);
+        set.appendChild(card);
+      });
+      track.appendChild(set);
+    }
+    row.appendChild(track);
+    bg.appendChild(row);
+  }
+}
 
 // Refresh user permissions
 async function refreshCurrentUser() {

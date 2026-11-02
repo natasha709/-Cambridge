@@ -278,20 +278,55 @@ html.dark #themeToggleThumb {
   box-shadow: inset 0 0 0 1px rgba(93, 164, 64, 0.18);
 }
 
-/* Feature grid */
-.login-feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 0.75rem;
-  container-type: inline-size;
+/* Scrolling feature cards behind the sign-in card */
+.login-feature-bg {
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4rem, #000 calc(100% - 4rem), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 4rem, #000 calc(100% - 4rem), transparent 100%);
 }
-@container (max-width: 560px) {
-  .login-feature-grid .login-feature-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
+.login-bg-row {
+  display: flex;
+  overflow: hidden;
+  padding-block: 0.35rem;
+}
+.login-bg-track {
+  display: flex;
+  width: max-content;
+  animation: loginFeatureScroll 46s linear infinite;
+  will-change: transform;
+}
+.login-bg-row--reverse .login-bg-track {
+  animation-direction: reverse;
+}
+.login-bg-row:nth-child(2) .login-bg-track { animation-duration: 58s; }
+.login-bg-row:nth-child(3) .login-bg-track { animation-duration: 50s; }
+.login-bg-row:nth-child(4) .login-bg-track { animation-duration: 66s; }
+.login-bg-set {
+  display: flex;
+}
+.login-bg-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.75rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 10px 22px -18px rgba(42, 78, 29, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  color: #3f5a35;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0.78;
+}
+.login-bg-card svg {
+  color: #5da440;
+}
+
+@keyframes loginFeatureScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .login-logo-slab {
@@ -473,6 +508,15 @@ html.dark .login-tile-icon {
   background: rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+html.dark .login-bg-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+html.dark .login-bg-card svg {
+  color: #8fc66a;
+}
 html.dark .login-chip {
   border-color: rgba(143, 198, 106, 0.24);
   background: rgba(19, 42, 58, 0.85);
@@ -521,5 +565,8 @@ html.dark .login-alert {
   .login-tile:hover,
   .login-submit:hover:not(:disabled) {
     transform: none !important;
+  }
+  .login-bg-track {
+    animation: none !important;
   }
 }
