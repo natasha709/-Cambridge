@@ -60,10 +60,7 @@
     <div class="relative z-10 lg:grid lg:grid-cols-[1.05fr_1fr]">
 
     <!-- Brand panel -->
-    <aside class="login-brand relative hidden overflow-hidden p-10 lg:flex lg:flex-col xl:p-12">
-      <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-school-300/40 blur-3xl" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-school-200/40 blur-3xl" aria-hidden="true"></div>
-
+    <aside class="login-brand relative hidden p-10 lg:flex lg:flex-col xl:p-12">
       <div class="relative z-10 flex flex-1 flex-col">
         <img
           id="brandLogo"
@@ -79,55 +76,51 @@
           </p>
         </div>
 
-        <div class="login-carousel mt-8 w-full" id="loginFeatureCarousel" role="region" aria-roledescription="carousel" aria-label="Platform features">
-          <div class="login-carousel-viewport">
-            <div class="login-carousel-track" id="loginFeatureTrack">
-              <div class="login-carousel-page">
-                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+        <div class="login-marquee mt-8 w-full" role="region" aria-label="Platform features">
+          <div class="login-marquee-viewport">
+            <div class="login-marquee-track">
+              <div class="login-marquee-set">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
                   <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
                     <i data-lucide="file-text" class="h-3.5 w-3.5"></i>
                   </div>
                   <div class="min-w-0">
                     <p class="text-[11px] font-semibold text-slate-900">Paper Repository</p>
-                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Browse exams by class, subject and term</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Browse by class, subject and term</p>
                   </div>
                 </div>
 
-                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
                   <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
                     <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>
                   </div>
                   <div class="min-w-0">
                     <p class="text-[11px] font-semibold text-slate-900">Role-Based Access</p>
-                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Teachers see only their own subject</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Scoped to your own subject</p>
                   </div>
                 </div>
-              </div>
 
-              <div class="login-carousel-page">
-                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
                   <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
                     <i data-lucide="upload-cloud" class="h-3.5 w-3.5"></i>
                   </div>
                   <div class="min-w-0">
                     <p class="text-[11px] font-semibold text-slate-900">Quick Uploads</p>
-                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Add papers with full exam metadata</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Add papers with full metadata</p>
                   </div>
                 </div>
 
-                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
                   <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
                     <i data-lucide="users" class="h-3.5 w-3.5"></i>
                   </div>
                   <div class="min-w-0">
                     <p class="text-[11px] font-semibold text-slate-900">Faculty Management</p>
-                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Admins control accounts and permissions</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Admins manage accounts and access</p>
                   </div>
                 </div>
-              </div>
 
-              <div class="login-carousel-page">
-                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
                   <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
                     <i data-lucide="search" class="h-3.5 w-3.5"></i>
                   </div>
@@ -137,23 +130,79 @@
                   </div>
                 </div>
 
-                <div class="login-tile flex h-full items-start gap-2.5 rounded-xl px-3 py-3">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
                   <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
                     <i data-lucide="trending-up" class="h-3.5 w-3.5"></i>
                   </div>
                   <div class="min-w-0">
                     <p class="text-[11px] font-semibold text-slate-900">Live Statistics</p>
-                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Track paper counts and downloads</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Track papers and downloads</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="login-marquee-set" aria-hidden="true">
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="file-text" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Paper Repository</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Browse by class, subject and term</p>
+                  </div>
+                </div>
+
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Role-Based Access</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Scoped to your own subject</p>
+                  </div>
+                </div>
+
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="upload-cloud" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Quick Uploads</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Add papers with full metadata</p>
+                  </div>
+                </div>
+
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="users" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Faculty Management</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Admins manage accounts and access</p>
+                  </div>
+                </div>
+
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="search" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Instant Search</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Find any paper in seconds</p>
+                  </div>
+                </div>
+
+                <div class="login-tile login-marquee-card flex flex-col gap-2 rounded-xl px-3 py-3">
+                  <div class="login-tile-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
+                    <i data-lucide="trending-up" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-semibold text-slate-900">Live Statistics</p>
+                    <p class="mt-0.5 text-[10px] leading-snug text-slate-500">Track papers and downloads</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="login-carousel-dots" id="loginFeatureDots" aria-label="Choose feature slide">
-            <button type="button" class="login-carousel-dot is-active" aria-label="Show features 1 of 3" aria-current="true"></button>
-            <button type="button" class="login-carousel-dot" aria-label="Show features 2 of 3"></button>
-            <button type="button" class="login-carousel-dot" aria-label="Show features 3 of 3"></button>
           </div>
         </div>
 

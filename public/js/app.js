@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
   restoreLoginPreferences();
   applyTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light', { persist: false, refreshCharts: false });
-  initLoginCarousel();
   if (window.lucide) lucide.createIcons();
 });
 
@@ -216,83 +215,6 @@ function restoreLoginPreferences() {
   const saved = localStorage.getItem(REMEMBERED_USERNAME_KEY);
   if (usernameInput && saved) usernameInput.value = saved;
   if (remember) remember.checked = Boolean(saved);
-}
-
-function initLoginCarousel() {
-  const carousel = document.getElementById('loginFeatureCarousel');
-  const track = document.getElementById('loginFeatureTrack');
-  const dots = document.getElementById('loginFeatureDots');
-  const loginSection = document.getElementById('loginSection');
-  if (!carousel || !track || !dots) return;
-
-  const pages = track.children.length;
-  if (pages < 2) return;
-
-  const dotButtons = Array.from(dots.querySelectorAll('.login-carousel-dot'));
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let index = 0;
-  let timer = null;
-  let hovering = false;
-  let focusWithin = false;
-
-  function goTo(next) {
-    index = (next + pages) % pages;
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dotButtons.forEach((dot, i) => {
-      dot.classList.toggle('is-active', i === index);
-      if (i === index) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
-    });
-  }
-
-  function stop() {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-    }
-  }
-
-  function start() {
-    stop();
-    if (reduceMotion.matches || hovering || focusWithin) return;
-    timer = setInterval(() => {
-      if (document.hidden || !carousel.offsetParent) return;
-      if (loginSection && loginSection.classList.contains('hidden')) return;
-      goTo(index + 1);
-    }, 5000);
-  }
-
-  dotButtons.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      goTo(i);
-      start();
-    });
-  });
-
-  carousel.addEventListener('mouseenter', () => {
-    hovering = true;
-    stop();
-  });
-  carousel.addEventListener('mouseleave', () => {
-    hovering = false;
-    start();
-  });
-  carousel.addEventListener('focusin', () => {
-    focusWithin = true;
-    stop();
-  });
-  carousel.addEventListener('focusout', (event) => {
-    focusWithin = carousel.contains(event.relatedTarget);
-    if (!focusWithin) start();
-  });
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stop();
-    else start();
-  });
-  if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', start);
-
-  goTo(0);
-  start();
 }
 
 async function handleLogin(e) {
