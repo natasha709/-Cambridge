@@ -287,8 +287,8 @@ html.dark #themeToggleThumb {
   border-radius: 1rem;
   container-type: inline-size;
   padding-block: 2px;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 0.75rem, #000 calc(100% - 0.75rem), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 0.75rem, #000 calc(100% - 0.75rem), transparent 100%);
 }
 .login-marquee-track {
   display: flex;
@@ -303,19 +303,15 @@ html.dark #themeToggleThumb {
 .login-marquee-set {
   display: flex;
 }
-.login-marquee-card {
-  flex: 0 0 calc((100cqw - 3rem) / 4);
+.login-marquee-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 0 0 calc((100cqw - 0.75rem) / 2);
   margin-right: 0.75rem;
 }
-@container (max-width: 520px) {
-  .login-marquee-card {
-    flex-basis: calc((100cqw - 2.25rem) / 3);
-  }
-}
-@container (max-width: 400px) {
-  .login-marquee-card {
-    flex-basis: calc((100cqw - 1.5rem) / 2);
-  }
+.login-marquee-card {
+  flex: 1 1 0;
 }
 
 @keyframes loginMarquee {

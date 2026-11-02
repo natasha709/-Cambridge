@@ -205,10 +205,6 @@ function toggleLoginPasswordVisibility() {
   setLoginPasswordVisible(input.type === 'password');
 }
 
-function showLoginPasswordHelp() {
-  showToast('Contact your administrator to reset your password.', 'info');
-}
-
 function restoreLoginPreferences() {
   const usernameInput = document.getElementById('loginUsername');
   const remember = document.getElementById('loginRemember');
