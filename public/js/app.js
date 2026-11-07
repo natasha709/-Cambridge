@@ -1385,7 +1385,7 @@ function renderTableView(papers) {
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden animate-fade-in">
       <div class="overflow-x-auto">
         <table class="w-full table-fixed text-left text-sm text-slate-600">
-          <thead class="bg-slate-50 text-[11px] uppercase font-semibold text-slate-500 border-b border-slate-200">
+          <thead class="bg-school-800 text-[11px] uppercase font-semibold text-white border-b border-school-900">
             <tr>
               <th class="px-2.5 py-3">Paper</th>
               <th class="w-[5.5rem] px-2.5 py-3">Class</th>
