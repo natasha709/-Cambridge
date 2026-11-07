@@ -1384,17 +1384,15 @@ function renderTableView(papers) {
   container.innerHTML = `
     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden animate-fade-in">
       <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm text-slate-600">
-          <thead class="bg-slate-50 text-xs uppercase font-semibold text-slate-500 border-b border-slate-200">
+        <table class="w-full table-fixed text-left text-sm text-slate-600">
+          <thead class="bg-slate-50 text-[11px] uppercase font-semibold text-slate-500 border-b border-slate-200">
             <tr>
-              <th class="px-4 py-3.5">Paper Title</th>
-              <th class="px-4 py-3.5">Class</th>
-              <th class="px-4 py-3.5">Subject</th>
-              <th class="px-4 py-3.5">Academic Year</th>
-              <th class="px-4 py-3.5">Term</th>
-              <th class="px-4 py-3.5">Category</th>
-              <th class="px-4 py-3.5">Size</th>
-              <th class="px-4 py-3.5 text-right">Action</th>
+              <th class="px-2.5 py-3">Paper</th>
+              <th class="w-[5.5rem] px-2.5 py-3">Class</th>
+              <th class="w-[6.5rem] px-2.5 py-3">Subject</th>
+              <th class="hidden w-[7.5rem] px-2.5 py-3 sm:table-cell">Year / Term</th>
+              <th class="hidden w-[7.5rem] px-2.5 py-3 lg:table-cell">Category</th>
+              <th class="w-[7.5rem] px-2.5 py-3 text-right">Actions</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100">
@@ -1405,38 +1403,35 @@ function renderTableView(papers) {
 
               return `
                 <tr class="hover:bg-slate-50 transition">
-                  <td class="px-4 py-3 font-semibold text-slate-800">
-                    <div class="flex items-center space-x-2">
-                      <i data-lucide="file-text" class="w-4 h-4 text-school-700 shrink-0"></i>
-                      <div class="truncate max-w-xs" title="${escapeHtml(p.title)}">
-                        ${escapeHtml(p.title)}
-                        <span class="block text-[11px] font-normal text-slate-400 uppercase">${fileExt} • ${escapeHtml(p.originalName)}</span>
+                  <td class="px-2.5 py-2.5">
+                    <div class="flex min-w-0 items-center gap-2">
+                      <i data-lucide="file-text" class="w-4 h-4 shrink-0 text-school-700"></i>
+                      <div class="min-w-0">
+                        <p class="truncate font-semibold text-slate-800" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</p>
+                        <p class="truncate text-[11px] font-normal uppercase text-slate-400" title="${escapeHtml(p.originalName)}">${fileExt} • ${formatBytes(p.size)}</p>
                       </div>
                     </div>
                   </td>
-                  <td class="px-4 py-3 whitespace-nowrap">
+                  <td class="px-2.5 py-2.5 whitespace-nowrap">
                     <span class="px-2 py-0.5 rounded font-bold text-xs bg-school-50 text-school-800 border border-school-200">
                       ${p.classYear}
                     </span>
                   </td>
-                  <td class="px-4 py-3 whitespace-nowrap">
+                  <td class="px-2.5 py-2.5 whitespace-nowrap">
                     <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${badgeClass}">
                       ${p.subject}
                     </span>
                   </td>
-                  <td class="px-4 py-3 whitespace-nowrap text-xs font-bold text-slate-700">
-                    ${p.academicYear}
-                  </td>
-                  <td class="px-4 py-3 whitespace-nowrap text-xs text-slate-600">
+                  <td class="hidden px-2.5 py-2.5 whitespace-nowrap text-xs text-slate-600 sm:table-cell">
+                    <span class="font-bold text-slate-700">${p.academicYear}</span>
+                    <span class="text-slate-400">·</span>
                     ${p.term}
                   </td>
-                  <td class="px-4 py-3 whitespace-nowrap text-xs text-slate-500">
-                    ${p.paperType}
+                  <td class="hidden px-2.5 py-2.5 text-xs text-slate-500 lg:table-cell">
+                    <span class="block truncate" title="${escapeHtml(p.paperType || '')}">${escapeHtml(p.paperType || '')}</span>
                   </td>
-                  <td class="px-4 py-3 whitespace-nowrap text-xs text-slate-500">
-                    ${formatBytes(p.size)}
-                  </td>
-                  <td class="px-4 py-3 whitespace-nowrap text-right space-x-2">
+                  <td class="px-2.5 py-2.5 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center gap-1">
                     <button 
                       onclick="openPreviewModal('${p.id}')"
                       class="p-1.5 text-school-700 hover:text-school-900 bg-white hover:bg-school-50 border border-school-300 rounded transition"
@@ -1465,6 +1460,7 @@ function renderTableView(papers) {
                         <i data-lucide="trash-2" class="w-4 h-4 inline"></i>
                       </button>
                     ` : ''}
+                    </div>
                   </td>
                 </tr>
               `;
@@ -1628,7 +1624,6 @@ function openPreviewModal(id) {
 
   document.getElementById('previewTitle').textContent = paper.title;
   document.getElementById('previewMeta').textContent = `${paper.classYear} • ${paper.subject} • ${paper.term} • ${paper.academicYear}`;
-  document.getElementById('previewFileInfo').textContent = `${paper.originalName} • ${formatBytes(paper.size)}`;
 
   const frame = document.getElementById('previewFrame');
   const imageWrap = document.getElementById('previewImageWrap');
@@ -1649,6 +1644,10 @@ function openPreviewModal(id) {
   const ext = getFileExtension(paper.originalName).toLowerCase();
   const isPdf = ext === 'pdf';
   const isImage = ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext);
+
+  document.getElementById('previewFileInfo').textContent = isPdf
+    ? `${paper.originalName} • ${formatBytes(paper.size)} • Scroll to view all pages`
+    : `${paper.originalName} • ${formatBytes(paper.size)}`;
 
   if (!isPdf && !isImage) {
     loading.classList.add('hidden');
@@ -1677,7 +1676,7 @@ function openPreviewModal(id) {
     loading.classList.add('hidden');
 
     if (isPdf) {
-      frame.src = previewObjectUrl;
+      frame.src = `${previewObjectUrl}#view=FitH`;
       frame.classList.remove('hidden');
     } else {
       image.src = previewObjectUrl;
@@ -1714,6 +1713,11 @@ function closePreviewModal() {
 
   revokePreviewUrl();
   previewPaper = null;
+}
+
+function openPreviewInNewTab() {
+  if (!previewObjectUrl) return;
+  window.open(previewObjectUrl, '_blank', 'noopener');
 }
 
 function downloadPreviewedPaper() {
