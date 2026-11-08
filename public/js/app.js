@@ -200,11 +200,11 @@ function showDashboardTab(tabName) {
 
   if (navAdminTab) {
     navAdminTab.classList.toggle('ring-2', tabName === 'admin');
-    navAdminTab.classList.toggle('ring-school-400', tabName === 'admin');
+    navAdminTab.classList.toggle('ring-white/40', tabName === 'admin');
   }
   if (navDashboardTab) {
     navDashboardTab.classList.toggle('ring-2', tabName === 'dashboard');
-    navDashboardTab.classList.toggle('ring-school-400', tabName === 'dashboard');
+    navDashboardTab.classList.toggle('ring-white/40', tabName === 'dashboard');
   }
 
   if (tabName === 'papers') {
@@ -383,7 +383,7 @@ function applyTheme(theme, { persist = true, refreshCharts = true } = {}) {
 
   const logoPath = isDark ? '/images/cambridge-logo-light.svg' : '/images/cambridge-logo.svg';
   const sidebarLogo = document.getElementById('sidebarLogo');
-  if (sidebarLogo) sidebarLogo.src = logoPath;
+  if (sidebarLogo) sidebarLogo.src = '/images/cambridge-logo-light.svg';
   const loginLogo = document.getElementById('loginLogo');
   if (loginLogo) loginLogo.src = logoPath;
   const brandLogo = document.getElementById('brandLogo');
@@ -1161,13 +1161,13 @@ function renderSidebarYears(byClass = {}) {
       <button 
         id="${safeYearId}"
         onclick="showDashboardTab('papers'); selectFilterFromSidebar('year', '${yr}')"
-        class="sidebar-item ${isSelected ? 'active' : ''} w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs text-left text-slate-300 font-medium"
+        class="sidebar-item ${isSelected ? 'active' : ''} w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs text-left font-medium"
       >
         <div class="flex items-center space-x-2">
-          <i data-lucide="folder" class="w-3.5 h-3.5 text-school-400"></i>
+          <i data-lucide="folder" class="w-3.5 h-3.5 text-school-200"></i>
           <span>${yr}</span>
         </div>
-        <span class="text-[10px] bg-school-900/80 px-2 py-0.5 rounded text-school-300 font-mono">
+        <span class="text-[10px] bg-black/25 px-2 py-0.5 rounded text-white font-mono">
           ${count}
         </span>
       </button>
@@ -1176,7 +1176,7 @@ function renderSidebarYears(byClass = {}) {
       <button 
         id="navAddClass"
         onclick="openAddClassModal()"
-        class="sidebar-item mt-1 w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border border-dashed border-school-400 hover:bg-school-100 transition"
+        class="sidebar-item mt-1 w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border border-dashed border-white/40 hover:bg-white/10 transition"
       >
         <i data-lucide="plus" class="w-3.5 h-3.5"></i>
         <span>Add Year / Class</span>
@@ -1202,13 +1202,13 @@ function renderSidebarAcademicYears(byAcademicYear = {}) {
       <button 
         id="${safeAcadId}"
         onclick="showDashboardTab('papers'); selectFilterFromSidebar('academicYear', '${yr}')"
-        class="sidebar-item ${isSelected ? 'active' : ''} w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs text-left text-slate-300 font-medium"
+        class="sidebar-item ${isSelected ? 'active' : ''} w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs text-left font-medium"
       >
         <div class="flex items-center space-x-2">
-          <i data-lucide="calendar" class="w-3.5 h-3.5 text-school-400"></i>
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-school-200"></i>
           <span>${yr} Papers</span>
         </div>
-        <span class="text-[10px] bg-school-900/80 px-2 py-0.5 rounded text-school-300 font-mono">
+        <span class="text-[10px] bg-black/25 px-2 py-0.5 rounded text-white font-mono">
           ${count}
         </span>
       </button>

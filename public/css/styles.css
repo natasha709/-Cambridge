@@ -33,11 +33,11 @@ body {
   width: 5px;
 }
 .sidebar-scroll::-webkit-scrollbar-thumb {
-  background: var(--school-green-light);
+  background: rgba(255, 255, 255, 0.35);
   border-radius: 4px;
 }
 .sidebar-scroll::-webkit-scrollbar-thumb:hover {
-  background: var(--school-green-main);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 @keyframes fadeIn {
@@ -79,25 +79,25 @@ body {
 }
 
 .sidebar-item {
-  color: var(--school-green-dark);
+  color: #e9f4e0;
   transition: all 0.15s ease;
 }
 .sidebar-item:hover {
-  background-color: var(--school-green-subtle);
-  color: #2a4e1d;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
 .sidebar-item.active {
-  background-color: var(--school-green-accent) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
   color: #ffffff !important;
   font-weight: 600;
-  box-shadow: 0 2px 4px rgba(93, 164, 64, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 .sidebar-item.active i {
   color: #ffffff !important;
 }
 .sidebar-item.active span.badge {
-  background-color: #4a8833 !important;
-  color: #e6f2dc !important;
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
 }
 
 /* ==================== DARK MODE ==================== */
@@ -165,8 +165,8 @@ html.dark .divide-school-100 > :not([hidden]) ~ :not([hidden]),
 html.dark .divide-school-200 > :not([hidden]) ~ :not([hidden]) { border-color: #1e2f47 !important; }
 
 /* Sidebar links */
-html.dark .sidebar-item { color: #d7e8c8; }
-html.dark .sidebar-item:hover { background-color: #16324a; color: #f0fdf4; }
+html.dark .sidebar-item { color: #e9f4e0; }
+html.dark .sidebar-item:hover { background-color: rgba(255, 255, 255, 0.12); color: #ffffff; }
 
 /* Hover states */
 html.dark .hover\:bg-slate-50:hover,
