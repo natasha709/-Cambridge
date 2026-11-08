@@ -434,7 +434,7 @@ function showAccountMenu() {
   const settings = document.getElementById('accountSettingsScreen');
   if (menu) menu.classList.remove('hidden');
   if (settings) settings.classList.add('hidden');
-  const card = document.querySelector('#myAccountModal > div');
+  const card = document.getElementById('accountPanel');
   if (card) card.scrollTop = 0;
   if (window.lucide) lucide.createIcons();
 }
@@ -444,7 +444,7 @@ function showAccountSettings() {
   const settings = document.getElementById('accountSettingsScreen');
   if (menu) menu.classList.add('hidden');
   if (settings) settings.classList.remove('hidden');
-  const card = document.querySelector('#myAccountModal > div');
+  const card = document.getElementById('accountPanel');
   if (card) card.scrollTop = 0;
   if (window.lucide) lucide.createIcons();
 }
@@ -459,7 +459,6 @@ function openMyAccountModal() {
   const name = getDisplayName(currentUser);
   document.getElementById('accountAvatarLetter').textContent = name.charAt(0).toUpperCase();
   document.getElementById('accountName').textContent = name;
-  document.getElementById('accountUsername').textContent = `@${currentUser.username}`;
   document.getElementById('accountRole').textContent = currentUser.role || '—';
 
   const subjects = currentUser.assignedSubjects || [];
@@ -513,7 +512,6 @@ function updateUserDisplay() {
   document.getElementById('userAvatarLetter').textContent = name.charAt(0).toUpperCase();
   document.getElementById('accountName').textContent = name;
   document.getElementById('accountAvatarLetter').textContent = name.charAt(0).toUpperCase();
-  document.getElementById('accountUsername').textContent = `@${currentUser.username}`;
 }
 
 async function handleUpdateProfileSubmit(e) {
